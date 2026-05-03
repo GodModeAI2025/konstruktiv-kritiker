@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>konstruktiv-kritiker · Stresstest deine Pläne, bevor sie scheitern</title>
+<meta name="description" content="Ein Claude-Skill, der Pläne, Launches und Entscheidungen kritisch hinterfragt – auf Basis der Pre-Mortem-Methode von Gary Klein.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600;9..144,800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0e1a;
+    --bg-elev: #11172a;
+    --bg-deep: #050811;
+    --border: #1f2942;
+    --text: #e8eaf0;
+    --text-dim: #8892b0;
+    --text-faint: #5a6480;
+    --accent-fail: #ef5350;
+    --accent-warn: #ffa726;
+    --accent-success: #64ffda;
+    --accent-hidden: #ab47bc;
+    --accent-revised: #26a69a;
+    --accent-coral: #ff6b6b;
+    --serif: "Fraunces", Georgia, serif;
+    --sans: "IBM Plex Sans", -apple-system, system-ui, sans-serif;
+    --mono: "IBM Plex Mono", "SF Mono", Menlo, monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    overflow-x: hidden;
+    font-feature-settings: "kern", "liga", "calt";
+  }
+
+  /* ── Layout ─────────────────────────────────────────── */
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+  section { padding: 96px 0; border-bottom: 1px solid var(--border); }
+  @media (max-width: 720px) { section { padding: 64px 0; } }
+
+  /* ── Hero ───────────────────────────────────────────── */
+  .hero {
+    position: relative;
+    padding: 160px 0 120px;
+    background: radial-gradient(ellipse at top right, rgba(239, 83, 80, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at bottom left, rgba(100, 255, 218, 0.05) 0%, transparent 60%);
+    border-bottom: 1px solid var(--border);
+  }
+  @media (max-width: 720px) { .hero { padding: 100px 0 80px; } }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent-coral);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .hero-eyebrow::before {
+    content: "";
+    width: 32px;
+    height: 1px;
+    background: var(--accent-coral);
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(48px, 8vw, 96px);
+    line-height: 0.95;
+    font-weight: 300;
+    letter-spacing: -0.04em;
+    margin-bottom: 32px;
+    color: #fff;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent-coral);
+  }
+  .hero h1 strong {
+    font-weight: 800;
+  }
+  .hero-lead {
+    font-size: clamp(18px, 2.2vw, 22px);
+    color: var(--text-dim);
+    max-width: 680px;
+    line-height: 1.5;
+    margin-bottom: 48px;
+  }
+  .hero-lead em {
+    font-style: italic;
+    color: var(--text);
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--text-faint);
+  }
+  .hero-meta span strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 16px;
+    margin-top: 48px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 24px;
+    border-radius: 4px;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: all 0.2s ease;
+  }
+  .btn-primary {
+    background: var(--accent-coral);
+    color: #1a0505;
+  }
+  .btn-primary:hover { background: #ff8585; transform: translateY(-1px); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--text);
+    border: 1px solid var(--border);
+  }
+  .btn-secondary:hover { border-color: var(--accent-success); color: var(--accent-success); }
+
+  /* ── Section Headers ────────────────────────────────── */
+  .section-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent-success);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(32px, 5vw, 48px);
+    line-height: 1.1;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+    color: #fff;
+  }
+  .section-title em {
+    font-style: italic;
+    color: var(--accent-coral);
+  }
+  .section-lead {
+    font-size: 18px;
+    color: var(--text-dim);
+    max-width: 640px;
+    margin-bottom: 56px;
+  }
+
+  /* ── Frame-Block ────────────────────────────────────── */
+  .frame-block {
+    background: linear-gradient(135deg, rgba(239, 83, 80, 0.06), transparent 70%);
+    border-left: 3px solid var(--accent-coral);
+    padding: 32px 40px;
+    margin: 48px 0;
+    font-family: var(--serif);
+    font-size: 22px;
+    font-style: italic;
+    line-height: 1.4;
+    color: #d8c8e8;
+  }
+  .frame-block::before {
+    content: "„";
+    font-size: 48px;
+    color: var(--accent-coral);
+    line-height: 1;
+    margin-right: 8px;
+    vertical-align: -16px;
+  }
+  .frame-block::after { content: """; }
+
+  /* ── Wie es funktioniert ────────────────────────────── */
+  .steps { display: grid; gap: 16px; }
+  @media (min-width: 720px) { .steps { grid-template-columns: repeat(3, 1fr); gap: 24px; } }
+  .step {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    padding: 28px;
+    border-radius: 6px;
+    position: relative;
+    transition: all 0.2s ease;
+  }
+  .step:hover { border-color: var(--accent-success); transform: translateY(-2px); }
+  .step-num {
+    font-family: var(--serif);
+    font-size: 64px;
+    font-weight: 200;
+    line-height: 1;
+    color: var(--accent-coral);
+    margin-bottom: 12px;
+    font-style: italic;
+  }
+  .step h3 {
+    font-family: var(--sans);
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #fff;
+  }
+  .step p { font-size: 14px; color: var(--text-dim); }
+
+  /* ── Quellen ────────────────────────────────────────── */
+  .sources-grid {
+    display: grid;
+    gap: 0;
+    border-top: 1px solid var(--border);
+  }
+  .source-row {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 32px;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  @media (max-width: 720px) {
+    .source-row { grid-template-columns: 1fr; gap: 8px; padding: 20px 0; }
+  }
+  .source-label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent-success);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding-top: 4px;
+  }
+  .source-content { color: var(--text-dim); font-size: 15px; }
+  .source-content strong { color: var(--text); font-weight: 500; }
+  .source-content em { font-style: italic; color: var(--text); }
+
+  /* ── Installation ───────────────────────────────────── */
+  .install-wrapper {
+    display: grid;
+    gap: 24px;
+    margin-top: 48px;
+  }
+  @media (min-width: 900px) { .install-wrapper { grid-template-columns: 1fr 1fr; gap: 32px; } }
+  .install-card {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 32px;
+  }
+  .install-card h3 {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-weight: 400;
+    margin-bottom: 8px;
+    color: #fff;
+  }
+  .install-card .lede { color: var(--text-dim); font-size: 14px; margin-bottom: 24px; }
+  .install-card ol { padding-left: 20px; }
+  .install-card li {
+    color: var(--text-dim);
+    font-size: 14px;
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+  .install-card li::marker {
+    color: var(--accent-coral);
+    font-family: var(--mono);
+    font-weight: 600;
+  }
+  .install-card strong { color: var(--text); }
+  .code {
+    font-family: var(--mono);
+    font-size: 12px;
+    background: var(--bg-deep);
+    color: var(--accent-success);
+    padding: 2px 6px;
+    border-radius: 3px;
+    border: 1px solid var(--border);
+  }
+  pre.code-block {
+    font-family: var(--mono);
+    font-size: 13px;
+    background: var(--bg-deep);
+    color: var(--text);
+    padding: 16px 20px;
+    border-radius: 4px;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent-success);
+    overflow-x: auto;
+    margin: 12px 0;
+    line-height: 1.5;
+  }
+  pre.code-block .comment { color: var(--text-faint); }
+  pre.code-block .keyword { color: var(--accent-coral); }
+  pre.code-block .string { color: var(--accent-success); }
+
+  /* ── Beispiel-Lauf ──────────────────────────────────── */
+  .example-meta {
+    background: linear-gradient(135deg, rgba(171, 71, 188, 0.08), transparent 70%);
+    border-left: 3px solid var(--accent-hidden);
+    padding: 16px 24px;
+    border-radius: 4px;
+    margin-bottom: 32px;
+    font-size: 14px;
+    color: #c8b3e0;
+  }
+  .syn-grid { display: grid; gap: 16px; margin-bottom: 32px; }
+  @media (min-width: 720px) { .syn-grid { grid-template-columns: 1fr 1fr; } }
+  .syn-card {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 24px;
+  }
+  .syn-card.likely { border-left: 4px solid var(--accent-warn); }
+  .syn-card.dangerous { border-left: 4px solid var(--accent-fail); }
+  .syn-card.hidden { border-left: 4px solid var(--accent-hidden); }
+  .syn-card.revised { border-left: 4px solid var(--accent-revised); grid-column: 1/-1; }
+  .syn-card h4 {
+    font-family: var(--mono);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--text-faint);
+    margin-bottom: 12px;
+  }
+  .syn-card p { font-size: 15px; color: var(--text); line-height: 1.55; }
+  .syn-card strong { color: #fff; font-weight: 600; }
+
+  .fm-list { display: grid; gap: 12px; margin-bottom: 32px; }
+  .fm-item {
+    background: var(--bg-elev);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 16px 20px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .fm-num {
+    font-family: var(--serif);
+    font-size: 24px;
+    font-style: italic;
+    color: var(--accent-coral);
+    line-height: 1;
+    min-width: 32px;
+    padding-top: 2px;
+  }
+  .fm-text { font-size: 14px; color: var(--text-dim); flex: 1; }
+  .fm-text strong { color: var(--text); font-weight: 600; }
+
+  /* ── Footer ─────────────────────────────────────────── */
+  footer {
+    padding: 64px 0 80px;
+    text-align: center;
+    color: var(--text-faint);
+    font-size: 13px;
+    font-family: var(--mono);
+  }
+  footer a { color: var(--text-dim); text-decoration: none; border-bottom: 1px solid var(--border); }
+  footer a:hover { color: var(--accent-success); border-color: var(--accent-success); }
+  footer .meta { margin-top: 16px; font-size: 11px; color: var(--text-faint); }
+
+  /* ── Selection ──────────────────────────────────────── */
+  ::selection { background: var(--accent-coral); color: #1a0505; }
+</style>
+</head>
+<body>
+
+<!-- HERO ───────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">Claude Skill · Pre-Mortem auf Deutsch</div>
+    <h1>Stresstest <em>deine Pläne</em>,<br>bevor sie <strong>scheitern</strong>.</h1>
+    <p class="hero-lead">
+      Ein Skill, der Pläne, Launches, Einstellungen und Strategien <em>bevor</em> der Umsetzung kritisch hinterfragt. Methode: Pre-Mortem nach Gary Klein – die Technik, die Daniel Kahneman als seine wertvollste bezeichnete.
+    </p>
+    <div class="hero-meta">
+      <span>METHODE · <strong>Klein 2007 · HBR</strong></span>
+      <span>SPRACHE · <strong>Deutsch</strong></span>
+      <span>STRUKTUR · <strong>SKILL.md + 7 references/</strong></span>
+    </div>
+    <div class="hero-cta">
+      <a href="https://github.com/GodModeAI2025/konstruktiv-kritiker" class="btn btn-primary">→ GitHub Repository</a>
+      <a href="#installation" class="btn btn-secondary">Installation</a>
+    </div>
+  </div>
+</section>
+
+<!-- WAS ER TUT ─────────────────────────────────────────── -->
+<section id="was-er-tut">
+  <div class="wrap">
+    <div class="section-eyebrow">01 · Was er tut</div>
+    <h2 class="section-title">Claude wird zum <em>konstruktiven Kritiker</em>.</h2>
+    <p class="section-lead">
+      Claude tendiert standardmäßig zu zustimmenden, optimistischen Antworten. Dieser Skill durchbricht das Muster mit einem psychologischen Trick: dem Pre-Mortem-Frame.
+    </p>
+
+    <div class="frame-block">
+      Es ist 6 Monate in der Zukunft. Dein Vorhaben ist gescheitert. Wir schauen zurück und erklären, warum.
+    </div>
+
+    <p style="color: var(--text-dim); max-width: 640px; font-size: 16px;">
+      Die Forschung nennt das <em>prospective hindsight</em>. Wer ein Ergebnis als bereits eingetreten annimmt, identifiziert Ursachen <strong style="color: var(--accent-success);">~30 % besser</strong> als wer „was könnte schiefgehen?" fragt. Mitchell, Russo &amp; Pennington, 1989.
+    </p>
+  </div>
+</section>
+
+<!-- WIE ES FUNKTIONIERT ────────────────────────────────── -->
+<section id="wie-es-funktioniert">
+  <div class="wrap">
+    <div class="section-eyebrow">02 · Wie es funktioniert</div>
+    <h2 class="section-title">Drei Phasen, ein Output.</h2>
+    <p class="section-lead">
+      Der Skill validiert deinen Kontext nach SMART-Kriterien, generiert Failure Modes parallel und liefert eine Synthese mit überarbeitetem Plan.
+    </p>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <h3>Kontext &amp; SMART-Check</h3>
+        <p>Vier Mindestschwellen: Was ist es? Für wen? Ausgangsposition mit Zahlen? SMART-Erfolg? Ohne diese vier Punkte ist die Pre-Mortem zu vage.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">02</div>
+        <h3>Failure Modes &amp; Deep-Dives</h3>
+        <p>Frame setzen, dann pro Fehlergrund einen Deep-Dive parallel: Fehlergeschichte, zugrundeliegende Annahme, Frühwarnzeichen.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">03</div>
+        <h3>Synthese &amp; Report</h3>
+        <p>Wahrscheinlichster Fehler, gefährlichster Fehler, versteckte Annahme, überarbeiteter Plan, Pre-Launch-Checkliste – als HTML-Report und Markdown-Transkript.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTALLATION ───────────────────────────────────────── -->
+<section id="installation">
+  <div class="wrap">
+    <div class="section-eyebrow">03 · Installation</div>
+    <h2 class="section-title">Vom Repo zur <em>.skill</em>-Datei.</h2>
+    <p class="section-lead">
+      Eine `.skill`-Datei ist ein ZIP-Archiv des Skill-Folders. Anthropic erkennt das Format in Claude.ai unter <span class="code">Customize &gt; Skills</span>.
+    </p>
+
+    <div class="install-wrapper">
+
+      <div class="install-card">
+        <h3>Variante A · Manuell zippen</h3>
+        <p class="lede">Schnell, ohne zusätzliche Tools.</p>
+        <ol>
+          <li>Repository als ZIP herunterladen oder klonen:
+            <pre class="code-block">git clone https://github.com/GodModeAI2025/<br>konstruktiv-kritiker.git</pre>
+          </li>
+          <li>Den Ordner <span class="code">konstruktiv-kritiker/</span> als ZIP packen. <strong>Wichtig:</strong> Der Skill-Ordner ist die ZIP-Wurzel, nicht ein Unterordner darin.</li>
+          <li>ZIP umbenennen zu <span class="code">konstruktiv-kritiker.skill</span></li>
+          <li>In Claude.ai: <strong>Customize &gt; Skills &gt; +</strong> &rarr; Datei hochladen</li>
+        </ol>
+      </div>
+
+      <div class="install-card">
+        <h3>Variante B · Mit package_skill.py</h3>
+        <p class="lede">Anthropic-Standard-Tool, validiert die Skill-Struktur automatisch.</p>
+        <ol>
+          <li>Skill-Creator von Anthropic installieren (enthält <span class="code">package_skill.py</span>)</li>
+          <li>Skript ausführen:
+            <pre class="code-block">python package_skill.py path/to/<br>konstruktiv-kritiker</pre>
+          </li>
+          <li>Erzeugte <span class="code">konstruktiv-kritiker.skill</span> liegt im Output-Verzeichnis</li>
+          <li>Upload in Claude.ai unter <strong>Customize &gt; Skills</strong></li>
+        </ol>
+      </div>
+
+    </div>
+
+    <div style="background: var(--bg-elev); border: 1px solid var(--border); border-radius: 4px; padding: 20px 24px; margin-top: 32px; color: var(--text-dim); font-size: 14px;">
+      <strong style="color: var(--text);">Hinweis · Claude Code:</strong> Statt einer <span class="code">.skill</span>-Datei genügt es, den Folder nach <span class="code">~/.claude/skills/konstruktiv-kritiker/</span> zu kopieren. Claude Code lädt Skills aus diesem Verzeichnis automatisch.
+    </div>
+  </div>
+</section>
+
+<!-- BEISPIEL-LAUF ──────────────────────────────────────── -->
+<section id="beispiel">
+  <div class="wrap">
+    <div class="section-eyebrow">04 · Beispiel-Lauf</div>
+    <h2 class="section-title">Der Skill <em>auf sich selbst</em>.</h2>
+    <p class="section-lead">
+      Der eindrucksvollste Test eines Werkzeugs ist die Anwendung auf sich selbst. Hier stresstestet der konstruktiv-kritiker seine eigene Adoption.
+    </p>
+
+    <div class="example-meta">
+      <strong>Vorhaben:</strong> Adoption durch 3+ Personen außerhalb des Maintainers bis 31.12.2026 ·
+      <strong>SMART-Validierung:</strong> S✓ M✓ A✓ R✓ T✓ ·
+      <strong>Ausgangsposition:</strong> 0 externe Nutzer:innen
+    </div>
+
+    <div class="frame-block">
+      Es ist 31. Dezember 2026. Der konstruktiv-kritiker-Skill wird nicht von 3 oder mehr Personen außerhalb des Maintainers genutzt. Adoption ist gescheitert. Wir schauen zurück und erklären, warum.
+    </div>
+
+    <h3 style="font-family: var(--serif); font-size: 28px; font-weight: 400; margin: 48px 0 24px; color: #fff;">7 identifizierte Failure Modes</h3>
+    <div class="fm-list">
+      <div class="fm-item"><div class="fm-num">1</div><div class="fm-text"><strong>Sprach-/Original-Doppelfalle</strong> – Skill ist deutsch (Markt-Fragmentierung) UND verweist auf englisches Original (Diskreditierungs-Frage)</div></div>
+      <div class="fm-item"><div class="fm-num">2</div><div class="fm-text"><strong>Trigger funktionieren nicht im Alltag</strong> – Phrasen sind formal, Menschen reden im Alltag informell</div></div>
+      <div class="fm-item"><div class="fm-num">3</div><div class="fm-text"><strong>Sharing-Mechanik unausgereift</strong> – Keine Skill-Marketplaces, manuelle Installation als Hürde</div></div>
+      <div class="fm-item"><div class="fm-num">4</div><div class="fm-text"><strong>Maintainer-Aufmerksamkeits-Konkurrenz</strong> – Buch, Podcast, Job priorisieren über Skill-Promo</div></div>
+      <div class="fm-item"><div class="fm-num">5</div><div class="fm-text"><strong>Onboarding zu rigoros</strong> – 4-Punkt-Mindestschwelle + 6 Schritte = zu viele Klicks bis zum ersten Wert</div></div>
+      <div class="fm-item"><div class="fm-num">6</div><div class="fm-text"><strong>Konkurrenz mit anderen Decision-Tools</strong> – LLM-Council, alternative Skills, weniger Friction</div></div>
+      <div class="fm-item"><div class="fm-num">7</div><div class="fm-text"><strong>Maintainer nutzt Skill nicht selbst</strong> – Ohne authentische Routine keine glaubwürdige Promotion</div></div>
+    </div>
+
+    <h3 style="font-family: var(--serif); font-size: 28px; font-weight: 400; margin: 48px 0 24px; color: #fff;">Synthese</h3>
+    <div class="syn-grid">
+      <div class="syn-card likely">
+        <h4>Wahrscheinlichster Fehler</h4>
+        <p><strong>Maintainer nutzt den Skill nicht selbst regelmäßig</strong> – dadurch wird Promotion generisch, Authentizität bröckelt, Adoptions-Push verliert Glaubwürdigkeit. Ein Skill ohne lebendigen Maintainer ist ein Skill ohne Sog.</p>
+      </div>
+      <div class="syn-card dangerous">
+        <h4>Gefährlichster Fehler</h4>
+        <p><strong>Onboarding zu rigoros</strong> – die 4-Punkte-Mindestschwelle plus 6-Schritte-Workflow ist exzellent für Qualität, aber 50 %+ der Erstnutzer:innen brechen ab, bevor sie Wert sehen.</p>
+      </div>
+      <div class="syn-card hidden">
+        <h4>Versteckte Annahme</h4>
+        <p>„Skill-Adoption funktioniert wie Software-Adoption: gutes Produkt → wird genutzt." <strong>Falsch.</strong> Skill-Adoption ist Methoden-Adoption – braucht aktive Pflege durch Maintainer, regelmäßige Authentizitäts-Beweise, Onboarding-Optimierung, Community-Anbindung.</p>
+      </div>
+      <div class="syn-card revised">
+        <h4>Wichtigste Plan-Korrektur</h4>
+        <p><strong>Quick-Modus implementieren</strong> (<span class="code" style="color: inherit;">$ARGUMENTS=schnell</span>): 2 Fragen statt 4 für Power-User mit Kontext im Kopf. Voller Modus bleibt Default für ehrgeizige Vorhaben. Die SMART-Erweiterung hat Qualität gehoben, aber für Erstnutzer:innen die Onboarding-Hürde so hoch, dass 50 %+ vor dem ersten Wert abbrechen.</p>
+      </div>
+    </div>
+
+    <p style="color: var(--text-dim); font-size: 15px; max-width: 640px; margin-top: 32px; padding-left: 24px; border-left: 2px solid var(--border); font-style: italic;">
+      <strong style="color: var(--accent-success); font-style: normal;">Meta-Beobachtung:</strong> Der Skill produziert hier Failure Modes, die zwei produktive Tests (Buchprojekt, Podcast) <em>nicht</em> aufgedeckt hätten. Er kritisiert sich selbst konstruktiv und identifiziert eine Schwäche, die gerade erst eingebaut wurde.
+    </p>
+  </div>
+</section>
+
+<!-- QUELLEN ────────────────────────────────────────────── -->
+<section id="quellen">
+  <div class="wrap">
+    <div class="section-eyebrow">05 · Quellen &amp; Inspiration</div>
+    <h2 class="section-title">Wissenschaftlich verankert.</h2>
+    <p class="section-lead">
+      Dieser Skill ist die deutsche Adaption und Erweiterung eines englischsprachigen <span class="code">premortem</span>-Skills. Übersetzung sprachlich auf den deutschen Fachbuch- und Unternehmenskontext zugeschnitten; Methodik und Mechanik bleiben dem Original treu.
+    </p>
+
+    <div class="sources-grid" style="border-top: 1px solid var(--border);">
+      <div class="source-row">
+        <div class="source-label">Methode</div>
+        <div class="source-content">
+          Die <strong>Pre-Mortem-Technik</strong> stammt von Psychologe <strong>Gary Klein</strong> und wurde 2007 in der <em>Harvard Business Review</em> publiziert: <em>„Performing a Project Premortem"</em>, September 2007.
+        </div>
+      </div>
+      <div class="source-row">
+        <div class="source-label">Bekanntheit</div>
+        <div class="source-content">
+          <strong>Daniel Kahneman</strong> beschrieb die Technik in <em>Thinking, Fast and Slow</em> (2011) als seine wertvollste Entscheidungstechnik. Anwender:innen u. a.: Google, Goldman Sachs, Procter &amp; Gamble.
+        </div>
+      </div>
+      <div class="source-row">
+        <div class="source-label">Empirie</div>
+        <div class="source-content">
+          Empirisch validiert wurde der zugrundeliegende Effekt – <em>prospective hindsight</em> – durch <strong>Mitchell, Russo &amp; Pennington (1989)</strong> im <em>Journal of Behavioral Decision Making</em>: Die Annahme eines bereits eingetretenen Ergebnisses steigert die Fähigkeit zur Identifikation von Ursachen um ca. 30 %.
+        </div>
+      </div>
+      <div class="source-row">
+        <div class="source-label">Skill-Mechanik</div>
+        <div class="source-content">
+          Die Skill-spezifische Mechanik – Frame-Setzung, parallele Deep-Dives pro Fehlergrund, strukturierte Synthese mit „wahrscheinlichster Fehler / gefährlichster Fehler / versteckte Annahme" – stammt aus dem englischen Original-Skill.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER ─────────────────────────────────────────────── -->
+<footer>
+  <div class="wrap">
+    <a href="https://github.com/GodModeAI2025/konstruktiv-kritiker">GitHub</a>
+    <span style="margin: 0 12px; color: var(--text-faint);">·</span>
+    <a href="#installation">Installation</a>
+    <span style="margin: 0 12px; color: var(--text-faint);">·</span>
+    <a href="#beispiel">Beispiel</a>
+    <div class="meta">
+      Methode: Gary Klein / HBR 2007 · Skill: Mark Zimmermann · 2026
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
