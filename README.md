@@ -123,6 +123,14 @@ MIT-Lizenz – freie Nutzung, Anpassung, Weitergabe.
 
 ---
 
+## Architektur-Entscheidungen
+
+Größere strukturelle Entscheidungen werden als ADRs (Architectural Decision Records) im MADR-Format dokumentiert:
+
+- [ADR-0001: Erzeugung und Distribution der `.skill`-Datei](docs/adr/0001-skill-package-distribution.md) — Hybrid-Ansatz aus CI-Build, pre-built `.skill` im Repo und manueller Fallback-Anleitung
+
+---
+
 ## Beitragen
 
 Issues und Pull Requests willkommen. Vor allem geschätzt:
