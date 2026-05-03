@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>konstruktiv-kritiker · Stresstest deine Pläne, bevor sie scheitern</title>
+<title>konstruktiv-kritiker · Stresstest für deine Pläne, bevor sie scheitern</title>
 <meta name="description" content="Ein Claude-Skill, der Pläne, Launches und Entscheidungen kritisch hinterfragt – auf Basis der Pre-Mortem-Methode von Gary Klein.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,17 +11,17 @@
 <style>
   :root {
     --bg: #0a0e1a;
-    --bg-elev: #11172a;
-    --bg-deep: #050811;
-    --border: #1f2942;
+    --bg-elev: #131a30;
+    --bg-deep: #060a14;
+    --border: #243052;
     --text: #e8eaf0;
-    --text-dim: #8892b0;
-    --text-faint: #5a6480;
+    --text-dim: #9dabc4;
+    --text-faint: #8494b0;
     --accent-fail: #ef5350;
     --accent-warn: #ffa726;
     --accent-success: #64ffda;
-    --accent-hidden: #ab47bc;
-    --accent-revised: #26a69a;
+    --accent-hidden: #ce93d8;
+    --accent-revised: #4db6ac;
     --accent-coral: #ff6b6b;
     --serif: "Fraunces", Georgia, serif;
     --sans: "IBM Plex Sans", -apple-system, system-ui, sans-serif;
@@ -33,7 +33,7 @@
     font-family: var(--sans);
     background: var(--bg);
     color: var(--text);
-    line-height: 1.6;
+    line-height: 1.65;
     overflow-x: hidden;
     font-feature-settings: "kern", "liga", "calt";
   }
@@ -54,7 +54,7 @@
   @media (max-width: 720px) { .hero { padding: 100px 0 80px; } }
   .hero-eyebrow {
     font-family: var(--mono);
-    font-size: 11px;
+    font-size: 12px;
     color: var(--accent-coral);
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -90,7 +90,7 @@
     font-size: clamp(18px, 2.2vw, 22px);
     color: var(--text-dim);
     max-width: 680px;
-    line-height: 1.5;
+    line-height: 1.55;
     margin-bottom: 48px;
   }
   .hero-lead em {
@@ -102,7 +102,7 @@
     flex-wrap: wrap;
     gap: 32px;
     font-family: var(--mono);
-    font-size: 13px;
+    font-size: 14px;
     color: var(--text-faint);
   }
   .hero-meta span strong {
@@ -122,7 +122,7 @@
     padding: 14px 24px;
     border-radius: 4px;
     font-family: var(--mono);
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 500;
     text-decoration: none;
     letter-spacing: 0.02em;
@@ -143,7 +143,7 @@
   /* ── Section Headers ────────────────────────────────── */
   .section-eyebrow {
     font-family: var(--mono);
-    font-size: 11px;
+    font-size: 12px;
     color: var(--accent-success);
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -167,6 +167,7 @@
     color: var(--text-dim);
     max-width: 640px;
     margin-bottom: 56px;
+    line-height: 1.6;
   }
 
   /* ── Frame-Block ────────────────────────────────────── */
@@ -178,18 +179,18 @@
     font-family: var(--serif);
     font-size: 22px;
     font-style: italic;
-    line-height: 1.4;
-    color: #d8c8e8;
+    line-height: 1.45;
+    color: var(--text);
   }
   .frame-block::before {
-    content: "„";
+    content: "\201E";
     font-size: 48px;
     color: var(--accent-coral);
     line-height: 1;
     margin-right: 8px;
     vertical-align: -16px;
   }
-  .frame-block::after { content: """; }
+  .frame-block::after { content: "\201C"; }
 
   /* ── Wie es funktioniert ────────────────────────────── */
   .steps { display: grid; gap: 16px; }
@@ -219,7 +220,7 @@
     margin-bottom: 10px;
     color: #fff;
   }
-  .step p { font-size: 14px; color: var(--text-dim); }
+  .step p { font-size: 15px; color: var(--text-dim); line-height: 1.6; }
 
   /* ── Quellen ────────────────────────────────────────── */
   .sources-grid {
@@ -239,13 +240,13 @@
   }
   .source-label {
     font-family: var(--mono);
-    font-size: 11px;
+    font-size: 12px;
     color: var(--accent-success);
     letter-spacing: 0.15em;
     text-transform: uppercase;
     padding-top: 4px;
   }
-  .source-content { color: var(--text-dim); font-size: 15px; }
+  .source-content { color: var(--text-dim); font-size: 16px; line-height: 1.6; }
   .source-content strong { color: var(--text); font-weight: 500; }
   .source-content em { font-style: italic; color: var(--text); }
 
@@ -269,11 +270,11 @@
     margin-bottom: 8px;
     color: #fff;
   }
-  .install-card .lede { color: var(--text-dim); font-size: 14px; margin-bottom: 24px; }
+  .install-card .lede { color: var(--text-dim); font-size: 15px; margin-bottom: 24px; }
   .install-card ol { padding-left: 20px; }
   .install-card li {
     color: var(--text-dim);
-    font-size: 14px;
+    font-size: 15px;
     margin-bottom: 12px;
     line-height: 1.6;
   }
@@ -285,7 +286,7 @@
   .install-card strong { color: var(--text); }
   .code {
     font-family: var(--mono);
-    font-size: 12px;
+    font-size: 13px;
     background: var(--bg-deep);
     color: var(--accent-success);
     padding: 2px 6px;
@@ -304,6 +305,8 @@
     overflow-x: auto;
     margin: 12px 0;
     line-height: 1.5;
+    white-space: pre;
+    word-break: keep-all;
   }
   pre.code-block .comment { color: var(--text-faint); }
   pre.code-block .keyword { color: var(--accent-coral); }
@@ -311,14 +314,15 @@
 
   /* ── Beispiel-Lauf ──────────────────────────────────── */
   .example-meta {
-    background: linear-gradient(135deg, rgba(171, 71, 188, 0.08), transparent 70%);
+    background: linear-gradient(135deg, rgba(206, 147, 216, 0.1), transparent 70%);
     border-left: 3px solid var(--accent-hidden);
     padding: 16px 24px;
     border-radius: 4px;
     margin-bottom: 32px;
-    font-size: 14px;
-    color: #c8b3e0;
+    font-size: 15px;
+    color: var(--text);
   }
+  .example-meta strong { color: #fff; }
   .syn-grid { display: grid; gap: 16px; margin-bottom: 32px; }
   @media (min-width: 720px) { .syn-grid { grid-template-columns: 1fr 1fr; } }
   .syn-card {
@@ -333,13 +337,13 @@
   .syn-card.revised { border-left: 4px solid var(--accent-revised); grid-column: 1/-1; }
   .syn-card h4 {
     font-family: var(--mono);
-    font-size: 11px;
+    font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 0.12em;
     color: var(--text-faint);
     margin-bottom: 12px;
   }
-  .syn-card p { font-size: 15px; color: var(--text); line-height: 1.55; }
+  .syn-card p { font-size: 15px; color: var(--text); line-height: 1.6; }
   .syn-card strong { color: #fff; font-weight: 600; }
 
   .fm-list { display: grid; gap: 12px; margin-bottom: 32px; }
@@ -361,7 +365,7 @@
     min-width: 32px;
     padding-top: 2px;
   }
-  .fm-text { font-size: 14px; color: var(--text-dim); flex: 1; }
+  .fm-text { font-size: 15px; color: var(--text-dim); flex: 1; line-height: 1.55; }
   .fm-text strong { color: var(--text); font-weight: 600; }
 
   /* ── Footer ─────────────────────────────────────────── */
@@ -369,12 +373,11 @@
     padding: 64px 0 80px;
     text-align: center;
     color: var(--text-faint);
-    font-size: 13px;
+    font-size: 14px;
     font-family: var(--mono);
   }
   footer a { color: var(--text-dim); text-decoration: none; border-bottom: 1px solid var(--border); }
   footer a:hover { color: var(--accent-success); border-color: var(--accent-success); }
-  footer .meta { margin-top: 16px; font-size: 11px; color: var(--text-faint); }
 
   /* ── Selection ──────────────────────────────────────── */
   ::selection { background: var(--accent-coral); color: #1a0505; }
@@ -385,18 +388,18 @@
 <!-- HERO ───────────────────────────────────────────────── -->
 <section class="hero">
   <div class="wrap">
-    <div class="hero-eyebrow">Claude Skill · Pre-Mortem auf Deutsch</div>
-    <h1>Stresstest <em>deine Pläne</em>,<br>bevor sie <strong>scheitern</strong>.</h1>
+    <div class="hero-eyebrow">Claude Skill &middot; Pre-Mortem auf Deutsch</div>
+    <h1>Stresstest<br><em>f&uuml;r deine Pl&auml;ne</em>,<br>bevor sie <strong>scheitern</strong>.</h1>
     <p class="hero-lead">
-      Ein Skill, der Pläne, Launches, Einstellungen und Strategien <em>bevor</em> der Umsetzung kritisch hinterfragt. Methode: Pre-Mortem nach Gary Klein – die Technik, die Daniel Kahneman als seine wertvollste bezeichnete.
+      Ein Skill, der Pl&auml;ne, Launches, Entscheidungen und Strategien <em>vor</em> der Umsetzung kritisch hinterfragt. Methode: Pre-Mortem nach Gary Klein &ndash; von Daniel Kahneman als &laquo;die wertvollste Entscheidungstechnik&raquo; bezeichnet.
     </p>
     <div class="hero-meta">
-      <span>METHODE · <strong>Klein 2007 · HBR</strong></span>
-      <span>SPRACHE · <strong>Deutsch</strong></span>
-      <span>STRUKTUR · <strong>SKILL.md + 7 references/</strong></span>
+      <span>METHODE &middot; <strong>Klein 2007 &middot; HBR</strong></span>
+      <span>SPRACHE &middot; <strong>Deutsch</strong></span>
+      <span>STRUKTUR &middot; <strong>SKILL.md + 7 references/</strong></span>
     </div>
     <div class="hero-cta">
-      <a href="https://github.com/GodModeAI2025/konstruktiv-kritiker" class="btn btn-primary">→ GitHub Repository</a>
+      <a href="https://github.com/GodModeAI2025/konstruktiv-kritiker" class="btn btn-primary">&rarr; GitHub Repository</a>
       <a href="#installation" class="btn btn-secondary">Installation</a>
     </div>
   </div>
@@ -405,18 +408,18 @@
 <!-- WAS ER TUT ─────────────────────────────────────────── -->
 <section id="was-er-tut">
   <div class="wrap">
-    <div class="section-eyebrow">01 · Was er tut</div>
+    <div class="section-eyebrow">01 &middot; Was er tut</div>
     <h2 class="section-title">Claude wird zum <em>konstruktiven Kritiker</em>.</h2>
     <p class="section-lead">
-      Claude tendiert standardmäßig zu zustimmenden, optimistischen Antworten. Dieser Skill durchbricht das Muster mit einem psychologischen Trick: dem Pre-Mortem-Frame.
+      Claude tendiert standardm&auml;&szlig;ig zu zustimmenden, optimistischen Antworten. Dieser Skill durchbricht das Muster mit einem psychologischen Trick: dem Pre-Mortem-Frame.
     </p>
 
     <div class="frame-block">
-      Es ist 6 Monate in der Zukunft. Dein Vorhaben ist gescheitert. Wir schauen zurück und erklären, warum.
+      Es ist sechs Monate in der Zukunft. Dein Vorhaben ist gescheitert. Wir schauen zur&uuml;ck und erkl&auml;ren, warum.
     </div>
 
-    <p style="color: var(--text-dim); max-width: 640px; font-size: 16px;">
-      Die Forschung nennt das <em>prospective hindsight</em>. Wer ein Ergebnis als bereits eingetreten annimmt, identifiziert Ursachen <strong style="color: var(--accent-success);">~30 % besser</strong> als wer „was könnte schiefgehen?" fragt. Mitchell, Russo &amp; Pennington, 1989.
+    <p style="color: var(--text-dim); max-width: 640px; font-size: 16px; line-height: 1.65;">
+      Die Forschung nennt das <em style="color: var(--text);">prospective hindsight</em>. Wer ein Ergebnis als bereits eingetreten annimmt, identifiziert Ursachen <strong style="color: var(--accent-success);">~30&thinsp;% besser</strong> als jemand, der &laquo;Was k&ouml;nnte schiefgehen?&raquo; fragt. Mitchell, Russo &amp; Pennington, 1989.
     </p>
   </div>
 </section>
@@ -424,27 +427,27 @@
 <!-- WIE ES FUNKTIONIERT ────────────────────────────────── -->
 <section id="wie-es-funktioniert">
   <div class="wrap">
-    <div class="section-eyebrow">02 · Wie es funktioniert</div>
+    <div class="section-eyebrow">02 &middot; Wie es funktioniert</div>
     <h2 class="section-title">Drei Phasen, ein Output.</h2>
     <p class="section-lead">
-      Der Skill validiert deinen Kontext nach SMART-Kriterien, generiert Failure Modes parallel und liefert eine Synthese mit überarbeitetem Plan.
+      Der Skill validiert deinen Kontext nach SMART-Kriterien, generiert Failure Modes parallel und liefert eine Synthese mit &uuml;berarbeitetem Plan.
     </p>
 
     <div class="steps">
       <div class="step">
         <div class="step-num">01</div>
         <h3>Kontext &amp; SMART-Check</h3>
-        <p>Vier Mindestschwellen: Was ist es? Für wen? Ausgangsposition mit Zahlen? SMART-Erfolg? Ohne diese vier Punkte ist die Pre-Mortem zu vage.</p>
+        <p>Vier Mindestschwellen: Was ist es? F&uuml;r wen? Ausgangsposition mit Zahlen? SMART-Erfolg? Ohne diese vier Punkte ist die Pre-Mortem zu vage.</p>
       </div>
       <div class="step">
         <div class="step-num">02</div>
         <h3>Failure Modes &amp; Deep-Dives</h3>
-        <p>Frame setzen, dann pro Fehlergrund einen Deep-Dive parallel: Fehlergeschichte, zugrundeliegende Annahme, Frühwarnzeichen.</p>
+        <p>Frame setzen, dann pro Fehlergrund einen Deep-Dive parallel: Fehlergeschichte, zugrunde liegende Annahme, Fr&uuml;hwarnzeichen.</p>
       </div>
       <div class="step">
         <div class="step-num">03</div>
         <h3>Synthese &amp; Report</h3>
-        <p>Wahrscheinlichster Fehler, gefährlichster Fehler, versteckte Annahme, überarbeiteter Plan, Pre-Launch-Checkliste – als HTML-Report und Markdown-Transkript.</p>
+        <p>Wahrscheinlichster Fehler, gef&auml;hrlichster Fehler, versteckte Annahme, &uuml;berarbeiteter Plan, Pre-Launch-Checkliste &ndash; als HTML-Report und Markdown-Transkript.</p>
       </div>
     </div>
   </div>
@@ -453,20 +456,20 @@
 <!-- INSTALLATION ───────────────────────────────────────── -->
 <section id="installation">
   <div class="wrap">
-    <div class="section-eyebrow">03 · Installation</div>
+    <div class="section-eyebrow">03 &middot; Installation</div>
     <h2 class="section-title">Vom Repo zur <em>.skill</em>-Datei.</h2>
     <p class="section-lead">
-      Eine `.skill`-Datei ist ein ZIP-Archiv des Skill-Folders. Anthropic erkennt das Format in Claude.ai unter <span class="code">Customize &gt; Skills</span>.
+      Eine <span class="code">.skill</span>-Datei ist ein ZIP-Archiv des Skill-Ordners. Anthropic erkennt das Format in Claude.ai unter <span class="code">Customize &gt; Skills</span>.
     </p>
 
     <div class="install-wrapper">
 
       <div class="install-card">
-        <h3>Variante A · Manuell zippen</h3>
-        <p class="lede">Schnell, ohne zusätzliche Tools.</p>
+        <h3>Variante A &middot; Manuell zippen</h3>
+        <p class="lede">Schnell, ohne zus&auml;tzliche Tools.</p>
         <ol>
           <li>Repository als ZIP herunterladen oder klonen:
-            <pre class="code-block">git clone https://github.com/GodModeAI2025/<br>konstruktiv-kritiker.git</pre>
+            <pre class="code-block">git clone https://github.com/GodModeAI2025/konstruktiv-kritiker.git</pre>
           </li>
           <li>Den Ordner <span class="code">konstruktiv-kritiker/</span> als ZIP packen. <strong>Wichtig:</strong> Der Skill-Ordner ist die ZIP-Wurzel, nicht ein Unterordner darin.</li>
           <li>ZIP umbenennen zu <span class="code">konstruktiv-kritiker.skill</span></li>
@@ -475,12 +478,12 @@
       </div>
 
       <div class="install-card">
-        <h3>Variante B · Mit package_skill.py</h3>
+        <h3>Variante B &middot; Mit package_skill.py</h3>
         <p class="lede">Anthropic-Standard-Tool, validiert die Skill-Struktur automatisch.</p>
         <ol>
-          <li>Skill-Creator von Anthropic installieren (enthält <span class="code">package_skill.py</span>)</li>
-          <li>Skript ausführen:
-            <pre class="code-block">python package_skill.py path/to/<br>konstruktiv-kritiker</pre>
+          <li>Skill-Creator von Anthropic installieren (enth&auml;lt <span class="code">package_skill.py</span>)</li>
+          <li>Skript ausf&uuml;hren:
+            <pre class="code-block">python package_skill.py path/to/konstruktiv-kritiker</pre>
           </li>
           <li>Erzeugte <span class="code">konstruktiv-kritiker.skill</span> liegt im Output-Verzeichnis</li>
           <li>Upload in Claude.ai unter <strong>Customize &gt; Skills</strong></li>
@@ -489,8 +492,8 @@
 
     </div>
 
-    <div style="background: var(--bg-elev); border: 1px solid var(--border); border-radius: 4px; padding: 20px 24px; margin-top: 32px; color: var(--text-dim); font-size: 14px;">
-      <strong style="color: var(--text);">Hinweis · Claude Code:</strong> Statt einer <span class="code">.skill</span>-Datei genügt es, den Folder nach <span class="code">~/.claude/skills/konstruktiv-kritiker/</span> zu kopieren. Claude Code lädt Skills aus diesem Verzeichnis automatisch.
+    <div style="background: var(--bg-elev); border: 1px solid var(--border); border-radius: 4px; padding: 20px 24px; margin-top: 32px; color: var(--text-dim); font-size: 15px; line-height: 1.6;">
+      <strong style="color: var(--text);">Hinweis &middot; Claude Code:</strong> Statt einer <span class="code">.skill</span>-Datei gen&uuml;gt es, den Ordner nach <span class="code">~/.claude/skills/konstruktiv-kritiker/</span> zu kopieren. Claude Code l&auml;dt Skills aus diesem Verzeichnis automatisch.
     </div>
   </div>
 </section>
@@ -498,55 +501,55 @@
 <!-- BEISPIEL-LAUF ──────────────────────────────────────── -->
 <section id="beispiel">
   <div class="wrap">
-    <div class="section-eyebrow">04 · Beispiel-Lauf</div>
+    <div class="section-eyebrow">04 &middot; Beispiel-Lauf</div>
     <h2 class="section-title">Der Skill <em>auf sich selbst</em>.</h2>
     <p class="section-lead">
       Der eindrucksvollste Test eines Werkzeugs ist die Anwendung auf sich selbst. Hier stresstestet der konstruktiv-kritiker seine eigene Adoption.
     </p>
 
     <div class="example-meta">
-      <strong>Vorhaben:</strong> Adoption durch 3+ Personen außerhalb des Maintainers bis 31.12.2026 ·
-      <strong>SMART-Validierung:</strong> S✓ M✓ A✓ R✓ T✓ ·
+      <strong>Vorhaben:</strong> Adoption durch 3+ Personen au&szlig;erhalb des Maintainers bis 31.12.2026 &middot;
+      <strong>SMART-Validierung:</strong> S&#10003; M&#10003; A&#10003; R&#10003; T&#10003; &middot;
       <strong>Ausgangsposition:</strong> 0 externe Nutzer:innen
     </div>
 
     <div class="frame-block">
-      Es ist 31. Dezember 2026. Der konstruktiv-kritiker-Skill wird nicht von 3 oder mehr Personen außerhalb des Maintainers genutzt. Adoption ist gescheitert. Wir schauen zurück und erklären, warum.
+      Es ist der 31. Dezember 2026. Der konstruktiv-kritiker-Skill wird nicht von drei oder mehr Personen au&szlig;erhalb des Maintainers genutzt. Die Adoption ist gescheitert. Wir schauen zur&uuml;ck und erkl&auml;ren, warum.
     </div>
 
-    <h3 style="font-family: var(--serif); font-size: 28px; font-weight: 400; margin: 48px 0 24px; color: #fff;">7 identifizierte Failure Modes</h3>
+    <h3 style="font-family: var(--serif); font-size: 28px; font-weight: 400; margin: 48px 0 24px; color: #fff;">Sieben identifizierte Failure Modes</h3>
     <div class="fm-list">
-      <div class="fm-item"><div class="fm-num">1</div><div class="fm-text"><strong>Sprach-/Original-Doppelfalle</strong> – Skill ist deutsch (Markt-Fragmentierung) UND verweist auf englisches Original (Diskreditierungs-Frage)</div></div>
-      <div class="fm-item"><div class="fm-num">2</div><div class="fm-text"><strong>Trigger funktionieren nicht im Alltag</strong> – Phrasen sind formal, Menschen reden im Alltag informell</div></div>
-      <div class="fm-item"><div class="fm-num">3</div><div class="fm-text"><strong>Sharing-Mechanik unausgereift</strong> – Keine Skill-Marketplaces, manuelle Installation als Hürde</div></div>
-      <div class="fm-item"><div class="fm-num">4</div><div class="fm-text"><strong>Maintainer-Aufmerksamkeits-Konkurrenz</strong> – Buch, Podcast, Job priorisieren über Skill-Promo</div></div>
-      <div class="fm-item"><div class="fm-num">5</div><div class="fm-text"><strong>Onboarding zu rigoros</strong> – 4-Punkt-Mindestschwelle + 6 Schritte = zu viele Klicks bis zum ersten Wert</div></div>
-      <div class="fm-item"><div class="fm-num">6</div><div class="fm-text"><strong>Konkurrenz mit anderen Decision-Tools</strong> – LLM-Council, alternative Skills, weniger Friction</div></div>
-      <div class="fm-item"><div class="fm-num">7</div><div class="fm-text"><strong>Maintainer nutzt Skill nicht selbst</strong> – Ohne authentische Routine keine glaubwürdige Promotion</div></div>
+      <div class="fm-item"><div class="fm-num">1</div><div class="fm-text"><strong>Sprach- und Original-Doppelfalle</strong> &ndash; Der Skill ist deutsch (Markt-Fragmentierung) und verweist gleichzeitig auf das englische Original (Diskreditierungsfrage)</div></div>
+      <div class="fm-item"><div class="fm-num">2</div><div class="fm-text"><strong>Trigger funktionieren nicht im Alltag</strong> &ndash; Die Phrasen sind formal, Menschen reden im Alltag informell</div></div>
+      <div class="fm-item"><div class="fm-num">3</div><div class="fm-text"><strong>Sharing-Mechanik unausgereift</strong> &ndash; Keine Skill-Marketplaces, manuelle Installation als H&uuml;rde</div></div>
+      <div class="fm-item"><div class="fm-num">4</div><div class="fm-text"><strong>Maintainer-Aufmerksamkeitskonkurrenz</strong> &ndash; Buch, Podcast und Job werden &uuml;ber Skill-Promotion priorisiert</div></div>
+      <div class="fm-item"><div class="fm-num">5</div><div class="fm-text"><strong>Onboarding zu rigoros</strong> &ndash; Vier-Punkte-Mindestschwelle plus sechs Schritte = zu viele Klicks bis zum ersten Mehrwert</div></div>
+      <div class="fm-item"><div class="fm-num">6</div><div class="fm-text"><strong>Konkurrenz durch andere Decision-Tools</strong> &ndash; LLM-Council, alternative Skills, weniger Friction</div></div>
+      <div class="fm-item"><div class="fm-num">7</div><div class="fm-text"><strong>Maintainer nutzt den Skill nicht selbst</strong> &ndash; Ohne authentische Routine keine glaubw&uuml;rdige Promotion</div></div>
     </div>
 
     <h3 style="font-family: var(--serif); font-size: 28px; font-weight: 400; margin: 48px 0 24px; color: #fff;">Synthese</h3>
     <div class="syn-grid">
       <div class="syn-card likely">
         <h4>Wahrscheinlichster Fehler</h4>
-        <p><strong>Maintainer nutzt den Skill nicht selbst regelmäßig</strong> – dadurch wird Promotion generisch, Authentizität bröckelt, Adoptions-Push verliert Glaubwürdigkeit. Ein Skill ohne lebendigen Maintainer ist ein Skill ohne Sog.</p>
+        <p><strong>Der Maintainer nutzt den Skill nicht selbst regelm&auml;&szlig;ig</strong> &ndash; dadurch wird die Promotion generisch, die Authentizit&auml;t br&ouml;ckelt und der Adoptions-Push verliert Glaubw&uuml;rdigkeit. Ein Skill ohne lebendigen Maintainer ist ein Skill ohne Sog.</p>
       </div>
       <div class="syn-card dangerous">
-        <h4>Gefährlichster Fehler</h4>
-        <p><strong>Onboarding zu rigoros</strong> – die 4-Punkte-Mindestschwelle plus 6-Schritte-Workflow ist exzellent für Qualität, aber 50 %+ der Erstnutzer:innen brechen ab, bevor sie Wert sehen.</p>
+        <h4>Gef&auml;hrlichster Fehler</h4>
+        <p><strong>Onboarding zu rigoros</strong> &ndash; die Vier-Punkte-Mindestschwelle plus der Sechs-Schritte-Workflow ist exzellent f&uuml;r Qualit&auml;t, aber &uuml;ber 50&thinsp;% der Erstnutzer:innen brechen ab, bevor sie den Mehrwert sehen.</p>
       </div>
       <div class="syn-card hidden">
         <h4>Versteckte Annahme</h4>
-        <p>„Skill-Adoption funktioniert wie Software-Adoption: gutes Produkt → wird genutzt." <strong>Falsch.</strong> Skill-Adoption ist Methoden-Adoption – braucht aktive Pflege durch Maintainer, regelmäßige Authentizitäts-Beweise, Onboarding-Optimierung, Community-Anbindung.</p>
+        <p>&laquo;Skill-Adoption funktioniert wie Software-Adoption: gutes Produkt &rarr; wird genutzt.&raquo; <strong>Falsch.</strong> Skill-Adoption ist Methoden-Adoption &ndash; sie braucht aktive Pflege durch den Maintainer, regelm&auml;&szlig;ige Authentizit&auml;tsbeweise, Onboarding-Optimierung und Community-Anbindung.</p>
       </div>
       <div class="syn-card revised">
-        <h4>Wichtigste Plan-Korrektur</h4>
-        <p><strong>Quick-Modus implementieren</strong> (<span class="code" style="color: inherit;">$ARGUMENTS=schnell</span>): 2 Fragen statt 4 für Power-User mit Kontext im Kopf. Voller Modus bleibt Default für ehrgeizige Vorhaben. Die SMART-Erweiterung hat Qualität gehoben, aber für Erstnutzer:innen die Onboarding-Hürde so hoch, dass 50 %+ vor dem ersten Wert abbrechen.</p>
+        <h4>Wichtigste Plankorrektur</h4>
+        <p><strong>Quick-Modus implementieren</strong> (<span class="code" style="color: inherit;">$ARGUMENTS=schnell</span>): zwei Fragen statt vier f&uuml;r Power-User mit Kontext im Kopf. Der volle Modus bleibt Standard f&uuml;r ambitionierte Vorhaben. Die SMART-Erweiterung hat die Qualit&auml;t gehoben, aber f&uuml;r Erstnutzer:innen die Onboarding-H&uuml;rde so erh&ouml;ht, dass &uuml;ber 50&thinsp;% vor dem ersten Mehrwert abbrechen.</p>
       </div>
     </div>
 
-    <p style="color: var(--text-dim); font-size: 15px; max-width: 640px; margin-top: 32px; padding-left: 24px; border-left: 2px solid var(--border); font-style: italic;">
-      <strong style="color: var(--accent-success); font-style: normal;">Meta-Beobachtung:</strong> Der Skill produziert hier Failure Modes, die zwei produktive Tests (Buchprojekt, Podcast) <em>nicht</em> aufgedeckt hätten. Er kritisiert sich selbst konstruktiv und identifiziert eine Schwäche, die gerade erst eingebaut wurde.
+    <p style="color: var(--text-dim); font-size: 15px; max-width: 640px; margin-top: 32px; padding-left: 24px; border-left: 2px solid var(--border); font-style: italic; line-height: 1.6;">
+      <strong style="color: var(--accent-success); font-style: normal;">Meta-Beobachtung:</strong> Der Skill produziert hier Failure Modes, die zwei produktive Tests (Buchprojekt, Podcast) <em>nicht</em> aufgedeckt h&auml;tten. Er kritisiert sich selbst konstruktiv und identifiziert eine Schw&auml;che, die gerade erst eingebaut wurde.
     </p>
   </div>
 </section>
@@ -554,35 +557,35 @@
 <!-- QUELLEN ────────────────────────────────────────────── -->
 <section id="quellen">
   <div class="wrap">
-    <div class="section-eyebrow">05 · Quellen &amp; Inspiration</div>
+    <div class="section-eyebrow">05 &middot; Quellen &amp; Inspiration</div>
     <h2 class="section-title">Wissenschaftlich verankert.</h2>
     <p class="section-lead">
-      Dieser Skill ist die deutsche Adaption und Erweiterung eines englischsprachigen <span class="code">premortem</span>-Skills. Übersetzung sprachlich auf den deutschen Fachbuch- und Unternehmenskontext zugeschnitten; Methodik und Mechanik bleiben dem Original treu.
+      Dieser Skill ist die deutsche Adaption und Erweiterung eines englischsprachigen <span class="code">premortem</span>-Skills. Die &Uuml;bersetzung ist sprachlich auf den deutschen Fachbuch- und Unternehmenskontext zugeschnitten; Methodik und Mechanik bleiben dem Original treu.
     </p>
 
-    <div class="sources-grid" style="border-top: 1px solid var(--border);">
+    <div class="sources-grid">
       <div class="source-row">
         <div class="source-label">Methode</div>
         <div class="source-content">
-          Die <strong>Pre-Mortem-Technik</strong> stammt von Psychologe <strong>Gary Klein</strong> und wurde 2007 in der <em>Harvard Business Review</em> publiziert: <em>„Performing a Project Premortem"</em>, September 2007.
+          Die <strong>Pre-Mortem-Technik</strong> stammt vom Psychologen <strong>Gary Klein</strong> und wurde 2007 in der <em>Harvard Business Review</em> publiziert: <em>&laquo;Performing a Project Premortem&raquo;</em>, September 2007.
         </div>
       </div>
       <div class="source-row">
         <div class="source-label">Bekanntheit</div>
         <div class="source-content">
-          <strong>Daniel Kahneman</strong> beschrieb die Technik in <em>Thinking, Fast and Slow</em> (2011) als seine wertvollste Entscheidungstechnik. Anwender:innen u. a.: Google, Goldman Sachs, Procter &amp; Gamble.
+          <strong>Daniel Kahneman</strong> beschrieb die Technik in <em>Thinking, Fast and Slow</em> (2011) als die wertvollste Entscheidungstechnik, die er kenne. Anwender unter anderem: Google, Goldman Sachs, Procter &amp; Gamble.
         </div>
       </div>
       <div class="source-row">
         <div class="source-label">Empirie</div>
         <div class="source-content">
-          Empirisch validiert wurde der zugrundeliegende Effekt – <em>prospective hindsight</em> – durch <strong>Mitchell, Russo &amp; Pennington (1989)</strong> im <em>Journal of Behavioral Decision Making</em>: Die Annahme eines bereits eingetretenen Ergebnisses steigert die Fähigkeit zur Identifikation von Ursachen um ca. 30 %.
+          Empirisch validiert wurde der zugrunde liegende Effekt &ndash; <em>prospective hindsight</em> &ndash; durch <strong>Mitchell, Russo &amp; Pennington (1989)</strong> im <em>Journal of Behavioral Decision Making</em>: Die Annahme eines bereits eingetretenen Ergebnisses steigert die F&auml;higkeit zur Identifikation von Ursachen um ca.&thinsp;30&thinsp;%.
         </div>
       </div>
       <div class="source-row">
         <div class="source-label">Skill-Mechanik</div>
         <div class="source-content">
-          Die Skill-spezifische Mechanik – Frame-Setzung, parallele Deep-Dives pro Fehlergrund, strukturierte Synthese mit „wahrscheinlichster Fehler / gefährlichster Fehler / versteckte Annahme" – stammt aus dem englischen Original-Skill.
+          Die Skill-spezifische Mechanik &ndash; Frame-Setzung, parallele Deep-Dives pro Fehlergrund, strukturierte Synthese mit &laquo;wahrscheinlichster Fehler / gef&auml;hrlichster Fehler / versteckte Annahme&raquo; &ndash; stammt aus dem englischen Original-Skill.
         </div>
       </div>
     </div>
@@ -593,13 +596,12 @@
 <footer>
   <div class="wrap">
     <a href="https://github.com/GodModeAI2025/konstruktiv-kritiker">GitHub</a>
-    <span style="margin: 0 12px; color: var(--text-faint);">·</span>
+    <span style="margin: 0 12px; color: var(--text-faint);">&middot;</span>
     <a href="#installation">Installation</a>
-    <span style="margin: 0 12px; color: var(--text-faint);">·</span>
+    <span style="margin: 0 12px; color: var(--text-faint);">&middot;</span>
     <a href="#beispiel">Beispiel</a>
-    <div class="meta">
-      Methode: Gary Klein / HBR 2007 · Skill: Mark Zimmermann · 2026
-    </div>
+    <span style="margin: 0 12px; color: var(--text-faint);">&middot;</span>
+    <a href="https://godmodeai2025.github.io/MarkZimmermann/">Impressum</a>
   </div>
 </footer>
 
