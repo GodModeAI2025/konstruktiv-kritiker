@@ -78,7 +78,20 @@ konstruktiv-kritiker/
     ├── fruehwarnung-buch.md          # Domänen-Cheatsheet: Buchprojekte
     ├── fruehwarnung-produkt.md       # Domänen-Cheatsheet: Produkt-Launches
     ├── fruehwarnung-hire.md          # Domänen-Cheatsheet: Einstellungen
-    └── fruehwarnung-strategie.md     # Domänen-Cheatsheet: Strategie-Pivots
+    ├── fruehwarnung-strategie.md     # Domänen-Cheatsheet: Strategie-Pivots
+    ├── fruehwarnung-mna.md           # Domänen-Cheatsheet: M&A / Übernahmen
+    ├── fruehwarnung-forschung.md     # Domänen-Cheatsheet: Forschungsanträge
+    ├── fruehwarnung-bildung.md       # Domänen-Cheatsheet: Bildungsangebote
+    ├── fruehwarnung-gruendung.md     # Domänen-Cheatsheet: Firmengründung
+    ├── fruehwarnung-event.md         # Domänen-Cheatsheet: Events / Konferenzen
+    ├── fruehwarnung-internationalisierung.md  # Domänen-Cheatsheet: Marktexpansion
+    ├── fruehwarnung-fundraising.md   # Domänen-Cheatsheet: Fundraising
+    ├── fruehwarnung-migration.md     # Domänen-Cheatsheet: IT-Migration
+    ├── fruehwarnung-reorg.md         # Domänen-Cheatsheet: Reorganisation
+    ├── fruehwarnung-kampagne.md      # Domänen-Cheatsheet: Marketingkampagnen
+    ├── fruehwarnung-karriere.md      # Domänen-Cheatsheet: Karrierewechsel
+    ├── fruehwarnung-community.md     # Domänen-Cheatsheet: Community / Open Source
+    └── fruehwarnung-vertrag.md       # Domänen-Cheatsheet: Großaufträge / Verträge
 ```
 
 ---
@@ -135,6 +148,6 @@ Größere strukturelle Entscheidungen werden als ADRs (Architectural Decision Re
 
 Issues und Pull Requests willkommen. Vor allem geschätzt:
 
-- Weitere Domänen-Cheatsheets (z. B. M&A, Forschungsanträge, Bildungsangebote)
+- Weitere Domänen-Cheatsheets (aktuell 17 Domänen abgedeckt)
 - Übersetzungen (Englisch zurück, Französisch, Spanisch)
 - Reale Anwendungsfälle als Case Studies

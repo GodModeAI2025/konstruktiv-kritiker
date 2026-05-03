@@ -78,7 +78,20 @@ Jeder Grund:
 - `references/fruehwarnung-buch.md` – Buch- und Publikationsprojekte
 - `references/fruehwarnung-produkt.md` – SaaS-/Produkt-Launches, Workshops, Kurse
 - `references/fruehwarnung-hire.md` – Einstellungen, Berater:innen, lange Mandate
-- `references/fruehwarnung-strategie.md` – Pivots, Positionierungs-Wechsel, M&A
+- `references/fruehwarnung-strategie.md` – Pivots, Positionierungs-Wechsel
+- `references/fruehwarnung-mna.md` – M&A, Übernahmen, Joint Ventures
+- `references/fruehwarnung-forschung.md` – Forschungsanträge, Drittmittel
+- `references/fruehwarnung-bildung.md` – Bildungsangebote, Kurse, Weiterbildungen
+- `references/fruehwarnung-gruendung.md` – Firmengründung, Startup-Launch
+- `references/fruehwarnung-event.md` – Konferenzen, Events, Veranstaltungen
+- `references/fruehwarnung-internationalisierung.md` – Marktexpansion, Lokalisierung
+- `references/fruehwarnung-fundraising.md` – Finanzierungsrunden, Crowdfunding
+- `references/fruehwarnung-migration.md` – IT-Migration, Systemwechsel
+- `references/fruehwarnung-reorg.md` – Reorganisation, Teamumbau
+- `references/fruehwarnung-kampagne.md` – Marketingkampagnen, Go-to-Market
+- `references/fruehwarnung-karriere.md` – Karrierewechsel, beruflicher Umbruch
+- `references/fruehwarnung-community.md` – Community, Open-Source-Projekte
+- `references/fruehwarnung-vertrag.md` – Großaufträge, Vertragsverhandlungen, M&A
 
 Die Cheatsheets sind Inspiration, keine Pflicht. Generiere immer auch plan-spezifische Failure Modes, die nicht in den Listen stehen.
 
@@ -145,7 +158,20 @@ konstruktiv-kritiker/
     ├── fruehwarnung-buch.md         # Buch- und Publikationsprojekte
     ├── fruehwarnung-produkt.md      # Produkt-Launches, Workshops, Kurse
     ├── fruehwarnung-hire.md         # Einstellungen, Berater:innen
-    └── fruehwarnung-strategie.md    # Pivots, Positionierungs-Wechsel
+    ├── fruehwarnung-strategie.md    # Pivots, Positionierungs-Wechsel
+    ├── fruehwarnung-mna.md          # M&A, Übernahmen, Joint Ventures
+    ├── fruehwarnung-forschung.md    # Forschungsanträge, Drittmittel
+    ├── fruehwarnung-bildung.md      # Bildungsangebote, Kurse, Weiterbildungen
+    ├── fruehwarnung-gruendung.md    # Firmengründung, Startup-Launch
+    ├── fruehwarnung-event.md        # Konferenzen, Events, Veranstaltungen
+    ├── fruehwarnung-internationalisierung.md  # Marktexpansion, Lokalisierung
+    ├── fruehwarnung-fundraising.md  # Finanzierungsrunden, Crowdfunding
+    ├── fruehwarnung-migration.md    # IT-Migration, Systemwechsel
+    ├── fruehwarnung-reorg.md        # Reorganisation, Teamumbau
+    ├── fruehwarnung-kampagne.md     # Marketingkampagnen, Go-to-Market
+    ├── fruehwarnung-karriere.md     # Karrierewechsel, beruflicher Umbruch
+    ├── fruehwarnung-community.md    # Community, Open-Source-Projekte
+    └── fruehwarnung-vertrag.md      # Großaufträge, Vertragsverhandlungen
 ```
 
 ---
