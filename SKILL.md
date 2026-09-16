@@ -174,8 +174,12 @@ Dein Output sollte enthalten:
 
 3. FRÜHWARNZEICHEN: 1–2 konkrete, beobachtbare Signale, auf die der Nutzer achten kann und die anzeigen würden, dass dieser Fehlermodus beginnt, sich abzuspielen. Das sollten Dinge sein, die man tatsächlich sehen oder messen kann, keine vagen Gefühle.
 
-Halte die gesamte Antwort unter 300 Wörtern. Sei direkt. Beschönige nichts. Drücke dich nicht herum.
+4. SCHNELLTEST: Eine Prüfung, die der Nutzer noch diese Woche mit wenig Aufwand durchführen kann und die zeigt, ob die zugrundeliegende Annahme hält. Nenne, was genau zu tun ist, und welches Ergebnis die Annahme widerlegen würde. Keine Prüfung, die erst nach dem Launch möglich ist.
+
+Halte die gesamte Antwort unter 350 Wörtern. Sei direkt. Beschönige nichts. Drücke dich nicht herum.
 ```
+
+**Kontext als Fakten übergeben:** In `[voller Kontext]` gehören Was, Wer, Ausgangsposition, Erfolgskriterium und relevante Workspace-Auszüge. Nicht hinein gehören der Konversationsverlauf, die Argumente des Nutzers für den Plan und deine eigene Einschätzung. Wer die Überzeugungsarbeit mitliest, sucht unbewusst nach Gründen, warum der Plan doch hält.
 
 **Fallback:** Ohne Sub-Agenten (z. B. Claude.ai ohne Task-Tool) führst du die Deep-Dives sequenziell selbst durch. Langsamer, aber dasselbe Ergebnis.
 
@@ -187,7 +191,13 @@ Lies alle Deep-Dives und produziere den **Pre-Mortem-Report**:
 2. **Gefährlichster Fehler** – Welches Fehlerszenario würde den größten Schaden anrichten, wenn es eintritt, selbst wenn es weniger wahrscheinlich ist? Hiergegen lohnt es sich, sich abzusichern.
 3. **Versteckte Annahme** – Was ist über alle Fehleranalysen hinweg die größte Annahme, die der Nutzer macht und die er wahrscheinlich nicht hinterfragt hat? Hier liegt oft der eigentliche Wert der Pre-Mortem: die Sache, die für den Nutzer so offensichtlich ist, dass er vergessen hat, dass es eine Annahme ist.
 4. **Überarbeiteter Plan** – Welche konkreten Änderungen würden den Plan widerstandsfähiger machen? Sei konkret. Nicht „überlege deine Preisgestaltung", sondern „teste den Preis bei 297 € mit 20 Personen, bevor du dich öffentlich festlegst". Jede Überarbeitung muss direkt auf ein spezifisches Fehlerszenario mappen.
-5. **Pre-Launch-Checkliste** – 3–5 spezifische Dinge, die der Nutzer verifizieren, testen oder einrichten sollte, bevor er loslegt. Jeder Punkt sollte einen der identifizierten Fehlermodi verhindern oder erkennen.
+5. **Pre-Launch-Checkliste** – 3–5 spezifische Dinge, die der Nutzer verifizieren, testen oder einrichten sollte, bevor er loslegt. Jeder Punkt sollte einen der identifizierten Fehlermodi verhindern oder erkennen. Nutze dafür vorrangig die Schnelltests aus den Deep-Dives.
+6. **Urteil** – Genau eines von drei:
+    - **Loslegen** – kein Fehlerszenario stellt den Plan grundsätzlich in Frage; die Überarbeitungen reichen.
+    - **Loslegen, wenn …** – benenne die Schnelltests, die vorher bestanden sein müssen. Das ist der Normalfall, wenn die versteckte Annahme noch ungeprüft ist.
+    - **Stoppen und neu planen** – der gefährlichste oder wahrscheinlichste Fehler trifft den Kern des Plans, oder das SMART-Ziel ist aus der Ausgangsposition nicht erreichbar.
+
+    Ein Urteil ist Pflicht. Eine Pre-Mortem, die mit „es kommt darauf an" endet, lässt den Nutzer mit derselben Unsicherheit zurück, mit der er gekommen ist.
 
 ### 5. HTML-Report generieren
 
@@ -199,8 +209,9 @@ Der Report ist eine einzelne, eigenständige HTML-Datei mit Inline-CSS. Designpr
 
 - **Dunkler Hintergrund** (`#0a0e1a` oder ähnlich), klare Typografie, leicht zu scannen
 - **Synthese-Abschnitt prominent oben** – die meisten lesen die Synthese und überfliegen die Cards
-- **Eine visuelle Card pro Fehlergrund** mit Fehlergeschichte, zugrundeliegender Annahme und Frühwarnzeichen. Verwende unterschiedliche Akzentfarben pro Card, damit sie visuell unterscheidbar sind.
+- **Eine visuelle Card pro Fehlergrund** mit Fehlergeschichte, zugrundeliegender Annahme, Frühwarnzeichen und Schnelltest. Verwende unterschiedliche Akzentfarben pro Card, damit sie visuell unterscheidbar sind.
 - **Severity-Indikator** für jeden Fehlermodus (5 Punkte, gefüllt = Schweregrad)
+- **Urteil** als farbiges Banner direkt unter der Synthese
 - **Die Agenten-Übersicht**: Zeige die Anzahl der Agenten und ihre Ergebnisse als Grid oder Card-Layout, damit der Nutzer den vollen Umfang der Pre-Mortem auf einen Blick sieht
 - **Pre-Launch-Checkliste** als eigener Block mit Checkbox-Symbolen
 - **Footer** mit Zeitstempel und Untersuchungsgegenstand
@@ -232,7 +243,7 @@ kritik-transcript-[timestamp].md     # vollständiges Transkript als Referenz
 
 Der Nutzer sieht den HTML-Report zuerst. Das Transkript ist da, wenn er tiefer in die Begründung hinter jedem Fehlerszenario eintauchen will.
 
-Zusätzlich eine knappe Zusammenfassung im Chat: wahrscheinlichster Fehler, versteckte Annahme, wichtigste Plan-Korrektur. **Maximal drei Sätze.** Der Report hat die vollständigen Details.
+Zusätzlich eine knappe Zusammenfassung im Chat: Urteil, wahrscheinlichster Fehler, versteckte Annahme, wichtigste Plan-Korrektur. **Maximal vier Sätze.** Der Report hat die vollständigen Details.
 
 ---
 
@@ -248,9 +259,9 @@ Zusätzlich eine knappe Zusammenfassung im Chat: wahrscheinlichster Fehler, vers
 5. Wenn 60 % der Teilnehmer:innen Solopreneure sind, werden Reviews und Case Studies nicht bei der Marketing-Manager-Zielgruppe resonieren, die du für zukünftige Kohorten brauchst
 6. Bei 297 € × 50 Plätzen ist der maximale Umsatz 14.850 € – das rechtfertigt möglicherweise nicht den Vorbereitungsaufwand im Vergleich zu anderen Einnahmequellen
 
-**6 Agenten gehen unabhängig tief auf jeden Grund ein und produzieren Fehlergeschichten, zugrundeliegende Annahmen und Frühwarnzeichen.**
+**6 Agenten gehen unabhängig tief auf jeden Grund ein und produzieren Fehlergeschichten, zugrundeliegende Annahmen, Frühwarnzeichen und Schnelltests.**
 
-**Synthese:** Wahrscheinlichster Fehler ist der Zielgruppen-Mismatch: Du zielst auf Personen, die eine Genehmigung für 297 € brauchen, was Friction erzeugt, die nicht eingeplant ist. Gefährlichster Fehler: Solopreneure statt Team-Manager anziehen bedeutet, dass deine Case Studies und Testimonials bei der eigentlichen Zielkäufer:innen-Gruppe für zukünftige Kohorten nicht resonieren werden – das Problem potenziert sich über die Zeit. Versteckte Annahme: Du nimmst an, „Marketing-Manager in Unternehmen mit 10–50 Personen" sei eine erreichbare Zielgruppe, aber diese Personen identifizieren sich nicht so und halten sich nicht an denselben Orten auf. Überarbeiteter Plan: Führe eine 47-€-Pilot-Session mit 20 Personen durch. Nutze sie, um herauszufinden, ob deine tatsächlichen Käufer:innen Team-Manager oder Solopreneure sind, und baue den vollen Workshop für die, die tatsächlich auftauchen.
+**Synthese:** Wahrscheinlichster Fehler ist der Zielgruppen-Mismatch: Du zielst auf Personen, die eine Genehmigung für 297 € brauchen, was Friction erzeugt, die nicht eingeplant ist. Gefährlichster Fehler: Solopreneure statt Team-Manager anziehen bedeutet, dass deine Case Studies und Testimonials bei der eigentlichen Zielkäufer:innen-Gruppe für zukünftige Kohorten nicht resonieren werden – das Problem potenziert sich über die Zeit. Versteckte Annahme: Du nimmst an, „Marketing-Manager in Unternehmen mit 10–50 Personen" sei eine erreichbare Zielgruppe, aber diese Personen identifizieren sich nicht so und halten sich nicht an denselben Orten auf. Überarbeiteter Plan: Führe eine 47-€-Pilot-Session mit 20 Personen durch. Nutze sie, um herauszufinden, ob deine tatsächlichen Käufer:innen Team-Manager oder Solopreneure sind, und baue den vollen Workshop für die, die tatsächlich auftauchen. Urteil: Loslegen, wenn der Pilot zeigt, dass mindestens die Hälfte der Käufer:innen Team-Manager sind.
 
 **Vollständiger Beispiel-Lauf** (Skill auf sich selbst angewendet): siehe `references/beispiel-lauf.md`.
 
@@ -310,3 +321,4 @@ Dieser Skill ist die deutsche Adaption und Erweiterung eines englischsprachigen 
 - **Bekanntheit:** Daniel Kahneman, *Thinking, Fast and Slow* (2011) – beschreibt die Technik als seine wertvollste Entscheidungstechnik
 - **Empirie:** Mitchell, Russo & Pennington (1989), *Journal of Behavioral Decision Making* – ca. 30 % bessere Ursachen-Identifikation durch *prospective hindsight*
 - **Mechanik:** Frame-Setzung, parallele Deep-Dives pro Fehlergrund, strukturierte Synthese – stammen aus dem englischen Original-Skill
+- **Schnelltest, Urteil und faktenbasierte Übergabe an Sub-Agenten:** angeregt durch [devils-advocate](https://github.com/hadicancatak-coder/devils-advocate) (Prüfung pro Angriff, erzwungenes Urteil, Gegenspieler ohne Konversationskontext)

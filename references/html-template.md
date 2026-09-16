@@ -10,7 +10,8 @@ Verwende dieses Skeleton als Ausgangspunkt für den HTML-Report. Passe Akzentfar
   - Gefährlichster Fehler (rot)
   - Versteckte Annahme (lila)
   - Überarbeiteter Plan (türkis, volle Breite)
-- **Eine Card pro Fehlergrund** mit eigener Akzentfarbe (oben angeordnet als 4-Punkt-Top-Border)
+- **Urteil** als Banner unter der Synthese: Loslegen (grün), Loslegen, wenn … (orange), Stoppen und neu planen (rot)
+- **Eine Card pro Fehlergrund** mit eigener Akzentfarbe (oben angeordnet als 4-Punkt-Top-Border), darin Annahme, Frühwarnung und Schnelltest
 - **Severity-Indikator** (5 Punkte, gefüllt = Schweregrad)
 - **Pre-Launch-Checkliste** als eigener Block mit Häkchen-Boxen
 - **Footer** mit Zeitstempel und Untersuchungsgegenstand
@@ -84,6 +85,18 @@ Card 9: #ec407a (pink)
     color: #8892b0; margin-bottom: 10px;
   }
   .syn-card p { font-size: 15px; color: #e8eaf0; }
+  .verdict {
+    border-radius: 8px; padding: 16px 20px; margin-bottom: 32px;
+    background: #11172a; border: 1px solid #1f2942; border-left-width: 6px;
+  }
+  .verdict.go { border-left-color: #66bb6a; }
+  .verdict.go-if { border-left-color: #ffa726; }
+  .verdict.stop { border-left-color: #ef5350; }
+  .verdict h3 {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
+    color: #8892b0; margin-bottom: 6px;
+  }
+  .verdict p { font-size: 16px; color: #e8eaf0; }
   .checklist {
     background: #0f1525; border: 1px solid #1f2942; border-radius: 8px;
     padding: 20px; margin-bottom: 32px;
@@ -142,6 +155,7 @@ Card 9: #ec407a (pink)
   }
   .fm-section.warning .fm-section-label { color: #ffa726; }
   .fm-section.assumption .fm-section-label { color: #ab47bc; }
+  .fm-section.test .fm-section-label { color: #66bb6a; }
   .fm-section p { font-size: 14px; color: #c8cdd9; }
   footer {
     margin-top: 48px; padding-top: 20px; border-top: 1px solid #1f2942;
@@ -182,6 +196,12 @@ Card 9: #ec407a (pink)
     </div>
   </div>
 
+  <!-- Klasse je nach Urteil: go | go-if | stop -->
+  <div class="verdict go-if">
+    <h3>Urteil</h3>
+    <p>{{URTEIL: Loslegen | Loslegen, wenn … | Stoppen und neu planen}} – {{BEGRÜNDUNG_IN_EINEM_SATZ}}</p>
+  </div>
+
   <div class="checklist">
     <h3>Pre-Launch-Checkliste</h3>
     <ul>
@@ -211,6 +231,10 @@ Card 9: #ec407a (pink)
       <div class="fm-section warning">
         <div class="fm-section-label">Frühwarnung</div>
         <p>{{FRÜHWARNZEICHEN}}</p>
+      </div>
+      <div class="fm-section test">
+        <div class="fm-section-label">Schnelltest</div>
+        <p>{{SCHNELLTEST}}</p>
       </div>
     </div>
 
