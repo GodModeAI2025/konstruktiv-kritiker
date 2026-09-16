@@ -68,7 +68,7 @@ Der Skill aktiviert sich auf folgende Phrasen (Auswahl):
 
 ```
 konstruktiv-kritiker/
-├── SKILL.md                          # Hauptanleitung (161 Zeilen)
+├── SKILL.md                          # Hauptanleitung
 ├── README.md                         # Dieses File
 ├── index.html                        # Landingpage (GitHub Pages)
 └── references/
@@ -100,8 +100,8 @@ konstruktiv-kritiker/
 
 1. **Frame setzen** – „Es ist 6 Monate in der Zukunft, das Vorhaben ist gescheitert"
 2. **Roh-Fehlergründe generieren** – Jeden ernsthaften Failure Mode auflisten
-3. **Deep-Dives parallel** – Pro Fehlergrund ein Sub-Agent mit Fehlergeschichte, Annahme, Frühwarnzeichen
-4. **Synthese** – Wahrscheinlichster Fehler / Gefährlichster Fehler / Versteckte Annahme / Überarbeiteter Plan / Pre-Launch-Checkliste
+3. **Deep-Dives parallel** – Pro Fehlergrund ein Sub-Agent mit Fehlergeschichte, Annahme, Frühwarnzeichen, Schnelltest
+4. **Synthese** – Wahrscheinlichster Fehler / Gefährlichster Fehler / Versteckte Annahme / Überarbeiteter Plan / Pre-Launch-Checkliste / Urteil (Loslegen · Loslegen, wenn … · Stoppen)
 5. **HTML-Report generieren** – `kritik-report-[timestamp].html`
 6. **Markdown-Transkript speichern** – `kritik-transcript-[timestamp].md`
 

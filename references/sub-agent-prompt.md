@@ -26,7 +26,9 @@ Dein Output sollte enthalten:
 
 3. FRÜHWARNZEICHEN: 1–2 konkrete, beobachtbare Signale, auf die der Nutzer achten kann und die anzeigen würden, dass dieser Fehlermodus beginnt, sich abzuspielen. Das sollten Dinge sein, die man tatsächlich sehen oder messen kann, keine vagen Gefühle.
 
-Halte die gesamte Antwort unter 300 Wörtern. Sei direkt. Beschönige nichts. Drücke dich nicht herum.
+4. SCHNELLTEST: Eine Prüfung, die der Nutzer noch diese Woche mit wenig Aufwand durchführen kann und die zeigt, ob die zugrundeliegende Annahme hält. Nenne, was genau zu tun ist, und welches Ergebnis die Annahme widerlegen würde. Keine Prüfung, die erst nach dem Launch möglich ist.
+
+Halte die gesamte Antwort unter 350 Wörtern. Sei direkt. Beschönige nichts. Drücke dich nicht herum.
 ```
 
 ## Hinweise zur Anwendung
@@ -34,4 +36,5 @@ Halte die gesamte Antwort unter 300 Wörtern. Sei direkt. Beschönige nichts. Dr
 - **Parallelisierung ist Pflicht** (wenn möglich): Sequentielle Deep-Dives lassen frühere Antworten spätere beeinflussen und reduzieren die Diversität der Analysen.
 - **Pro Agent ein Fehlergrund**: Niemals zwei Fehlergründe an denselben Agenten geben – das verwässert die Tiefe.
 - **Voller Kontext mitgeben**: Der Agent kennt den Plan nicht aus der Konversation. Alles relevante (Was, Wer, Erfolg, plus Workspace-Auszüge) muss im Prompt enthalten sein.
-- **Wort-Limit ernst nehmen**: 300 Wörter zwingen zur Verdichtung. Längere Outputs verlieren an Schärfe.
+- **Fakten, keine Überzeugungsarbeit**: Gib den Plan als Fakten und Zahlen weiter. Nicht mitgeben: den Konversationsverlauf, die Argumente des Nutzers, warum der Plan funktioniert, und deine eigene Einschätzung. Ein Agent, der die Begeisterung für den Plan mitliest, findet schwächere Fehlergeschichten.
+- **Wort-Limit ernst nehmen**: 350 Wörter zwingen zur Verdichtung. Längere Outputs verlieren an Schärfe.
