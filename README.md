@@ -100,7 +100,7 @@ konstruktiv-kritiker/
 
 1. **Frame setzen** – „Es ist 6 Monate in der Zukunft, das Vorhaben ist gescheitert"
 2. **Roh-Fehlergründe generieren** – Jeden ernsthaften Failure Mode auflisten
-3. **Deep-Dives parallel** – Pro Fehlergrund ein Sub-Agent mit Fehlergeschichte, Annahme, Frühwarnzeichen, Schnelltest
+3. **Deep-Dives parallel** – Pro Fehlergrund ein Sub-Agent mit Fehlergeschichte, Annahme, Frühwarnzeichen, Schnelltest – Details aus dem Plan, keine erfundenen Zahlen
 4. **Synthese** – Wahrscheinlichster Fehler / Gefährlichster Fehler / Versteckte Annahme / Überarbeiteter Plan / Pre-Launch-Checkliste / Urteil (Loslegen · Loslegen, wenn … · Stoppen)
 5. **HTML-Report generieren** – `kritik-report-[timestamp].html`
 6. **Markdown-Transkript speichern** – `kritik-transcript-[timestamp].md`
@@ -127,6 +127,7 @@ Dieser Skill ist die deutsche Adaption und Erweiterung eines englischsprachigen 
 - **Methode:** Gary Klein, *„Performing a Project Premortem"*, Harvard Business Review, September 2007
 - **Bekanntheit:** Daniel Kahneman, *Thinking, Fast and Slow* (2011) – beschreibt die Technik als seine wertvollste Entscheidungstechnik
 - **Empirie:** Mitchell, Russo & Pennington (1989), *Journal of Behavioral Decision Making* – ca. 30 % bessere Ursachen-Identifikation durch *prospective hindsight*
+- **Mechanik-Anregungen:** [devils-advocate](https://github.com/hadicancatak-coder/devils-advocate) (Schnelltest pro Angriff, Pflicht-Urteil, Sub-Agent ohne Konversationskontext) und [crucible](https://github.com/Creeperprol/crucible) (keine erfundenen Fakten, Vermutungen bleiben als Vermutung markiert)
 
 ---
 
