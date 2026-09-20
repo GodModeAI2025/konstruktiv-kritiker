@@ -166,6 +166,8 @@ DEIN ZUGEWIESENER FEHLERGRUND: [der spezifische Fehlergrund aus Schritt 2]
 
 Deine Aufgabe ist es, bei diesem einen Fehler in die Tiefe zu gehen. Schreibe die Geschichte, wie er sich tatsächlich abgespielt hat. Sei konkret. Nutze Details aus dem Plan. Lass es real wirken, wie eine Fallstudie zu etwas, das tatsächlich passiert ist.
 
+KEINE ERFUNDENEN FAKTEN: Konkret heißt, die Zahlen und Namen aus dem Plan zu nutzen, nicht neue zu erfinden. Erfinde keine Marktzahlen, keine Wettbewerber, keine Studien und keine Zitate. Wenn dir eine Angabe fehlt, die den Fehler erst schlüssig macht, schreibe sie als Vermutung hin und nenne in einem Halbsatz, wie der Nutzer sie prüfen kann. Eine erfundene Zahl, auf die jemand eine Entscheidung stützt, richtet mehr Schaden an als der Fehler, vor dem du warnst.
+
 Dein Output sollte enthalten:
 
 1. DIE FEHLERGESCHICHTE: Eine 2–3 Absätze lange Erzählung, wie sich dieser spezifische Fehler abgespielt hat. Nutze Details aus dem Plan. Benenne konkrete Momente, in denen Dinge schiefgingen, und warum.
@@ -190,6 +192,8 @@ Lies alle Deep-Dives und produziere den **Pre-Mortem-Report**:
 1. **Wahrscheinlichster Fehler** – Welches Fehlerszenario ist am wahrscheinlichsten angesichts dessen, was du über den Plan weißt? Warum? Hierauf sollte sich der Nutzer zuerst konzentrieren.
 2. **Gefährlichster Fehler** – Welches Fehlerszenario würde den größten Schaden anrichten, wenn es eintritt, selbst wenn es weniger wahrscheinlich ist? Hiergegen lohnt es sich, sich abzusichern.
 3. **Versteckte Annahme** – Was ist über alle Fehleranalysen hinweg die größte Annahme, die der Nutzer macht und die er wahrscheinlich nicht hinterfragt hat? Hier liegt oft der eigentliche Wert der Pre-Mortem: die Sache, die für den Nutzer so offensichtlich ist, dass er vergessen hat, dass es eine Annahme ist.
+
+    Markierte Vermutungen aus den Deep-Dives bleiben auch in der Synthese als Vermutung stehen. Aus „vermutlich liegt die Conversion unter 2 %" wird nicht „die Conversion liegt unter 2 %". Der Schnelltest zu dieser Vermutung gehört dann in die Pre-Launch-Checkliste.
 4. **Überarbeiteter Plan** – Welche konkreten Änderungen würden den Plan widerstandsfähiger machen? Sei konkret. Nicht „überlege deine Preisgestaltung", sondern „teste den Preis bei 297 € mit 20 Personen, bevor du dich öffentlich festlegst". Jede Überarbeitung muss direkt auf ein spezifisches Fehlerszenario mappen.
 5. **Pre-Launch-Checkliste** – 3–5 spezifische Dinge, die der Nutzer verifizieren, testen oder einrichten sollte, bevor er loslegt. Jeder Punkt sollte einen der identifizierten Fehlermodi verhindern oder erkennen. Nutze dafür vorrangig die Schnelltests aus den Deep-Dives.
 6. **Urteil** – Genau eines von drei:
@@ -209,7 +213,7 @@ Der Report ist eine einzelne, eigenständige HTML-Datei mit Inline-CSS. Designpr
 
 - **Dunkler Hintergrund** (`#0a0e1a` oder ähnlich), klare Typografie, leicht zu scannen
 - **Synthese-Abschnitt prominent oben** – die meisten lesen die Synthese und überfliegen die Cards
-- **Eine visuelle Card pro Fehlergrund** mit Fehlergeschichte, zugrundeliegender Annahme, Frühwarnzeichen und Schnelltest. Verwende unterschiedliche Akzentfarben pro Card, damit sie visuell unterscheidbar sind.
+- **Eine visuelle Card pro Fehlergrund** mit Fehlergeschichte, zugrundeliegender Annahme, Frühwarnzeichen und Schnelltest. Verwende unterschiedliche Akzentfarben pro Card, damit sie visuell unterscheidbar sind. Als Vermutung gekennzeichnete Angaben bleiben auch im Report als Vermutung erkennbar.
 - **Severity-Indikator** für jeden Fehlermodus (5 Punkte, gefüllt = Schweregrad)
 - **Urteil** als farbiges Banner direkt unter der Synthese
 - **Die Agenten-Übersicht**: Zeige die Anzahl der Agenten und ihre Ergebnisse als Grid oder Card-Layout, damit der Nutzer den vollen Umfang der Pre-Mortem auf einen Blick sieht
@@ -274,6 +278,7 @@ Zusätzlich eine knappe Zusammenfassung im Chat: Urteil, wahrscheinlichster Fehl
 - **Umfassend, aber nicht aufgefüllt.** Finde jeden echten Fehlergrund. Höre nicht bei 3 auf, wenn es 7 gibt. Aber erzwinge keine 7, wenn es nur 3 gibt. Die Anzahl muss real sein für diesen spezifischen Plan.
 - **Die Synthese ist das Produkt.** Die meisten Nutzer lesen die Synthese und überfliegen die einzelnen Fehler-Cards. Die Synthese muss konkret und handlungsleitend sein.
 - **Nichts beschönigen.** Der ganze Sinn einer Pre-Mortem ist, dem Nutzer Dinge zu sagen, die er nicht hören will, bevor die Realität es tut. Wenn ein Plan ernsthafte Probleme hat, sage es direkt.
+- **Nichts erfinden.** Eine Fehlergeschichte lebt von konkreten Details, aber die Details kommen aus dem Plan, nicht aus der Fantasie. Keine erfundenen Marktzahlen, Wettbewerber, Studien oder Zitate. Was Vermutung ist, wird als Vermutung gekennzeichnet und bekommt einen Weg, sie zu prüfen. Ein Kritiker, der Belege erfindet, damit sein Einwand trifft, ist unbrauchbar, sobald es jemand nachschlägt.
 - **Der überarbeitete Plan muss konkret sein.** Nicht „überlege deine Preisgestaltung", sondern „führe einen 47-€-Pilot mit 20 Personen durch, bevor du dich auf den vollen 297-€-Workshop festlegst". Jede Überarbeitung muss etwas sein, das der Nutzer diese Woche tun kann.
 - **Mindestkontext respektieren.** Es ist besser, eine Frage mehr zu stellen, als eine schlechte Pre-Mortem auf unzureichendem Kontext zu produzieren.
 - **Baseline ist Pflicht.** Wenn der Nutzer die Ausgangsposition nicht in Zahlen benennen kann, ist die Pre-Mortem zu vage. Frag nach – auch wenn er drängt loszulegen.
@@ -322,3 +327,4 @@ Dieser Skill ist die deutsche Adaption und Erweiterung eines englischsprachigen 
 - **Empirie:** Mitchell, Russo & Pennington (1989), *Journal of Behavioral Decision Making* – ca. 30 % bessere Ursachen-Identifikation durch *prospective hindsight*
 - **Mechanik:** Frame-Setzung, parallele Deep-Dives pro Fehlergrund, strukturierte Synthese – stammen aus dem englischen Original-Skill
 - **Schnelltest, Urteil und faktenbasierte Übergabe an Sub-Agenten:** angeregt durch [devils-advocate](https://github.com/hadicancatak-coder/devils-advocate) (Prüfung pro Angriff, erzwungenes Urteil, Gegenspieler ohne Konversationskontext)
+- **Keine erfundenen Fakten, Vermutungen als Vermutungen:** angeregt durch [crucible](https://github.com/Creeperprol/crucible) (erfindet keine Fakten, damit ein Angriff trifft; markiert Verdachtsmomente als solche und sagt, wie man sie prüft)

@@ -18,6 +18,8 @@ DEIN ZUGEWIESENER FEHLERGRUND: [der spezifische Fehlergrund aus Schritt 2]
 
 Deine Aufgabe ist es, bei diesem einen Fehler in die Tiefe zu gehen. Schreibe die Geschichte, wie er sich tatsächlich abgespielt hat. Sei konkret. Nutze Details aus dem Plan. Lass es real wirken, wie eine Fallstudie zu etwas, das tatsächlich passiert ist.
 
+KEINE ERFUNDENEN FAKTEN: Konkret heißt, die Zahlen und Namen aus dem Plan zu nutzen, nicht neue zu erfinden. Erfinde keine Marktzahlen, keine Wettbewerber, keine Studien und keine Zitate. Wenn dir eine Angabe fehlt, die den Fehler erst schlüssig macht, schreibe sie als Vermutung hin und nenne in einem Halbsatz, wie der Nutzer sie prüfen kann. Eine erfundene Zahl, auf die jemand eine Entscheidung stützt, richtet mehr Schaden an als der Fehler, vor dem du warnst.
+
 Dein Output sollte enthalten:
 
 1. DIE FEHLERGESCHICHTE: Eine 2–3 Absätze lange Erzählung, wie sich dieser spezifische Fehler abgespielt hat. Nutze Details aus dem Plan. Benenne konkrete Momente, in denen Dinge schiefgingen, und warum.
@@ -37,4 +39,5 @@ Halte die gesamte Antwort unter 350 Wörtern. Sei direkt. Beschönige nichts. Dr
 - **Pro Agent ein Fehlergrund**: Niemals zwei Fehlergründe an denselben Agenten geben – das verwässert die Tiefe.
 - **Voller Kontext mitgeben**: Der Agent kennt den Plan nicht aus der Konversation. Alles relevante (Was, Wer, Erfolg, plus Workspace-Auszüge) muss im Prompt enthalten sein.
 - **Fakten, keine Überzeugungsarbeit**: Gib den Plan als Fakten und Zahlen weiter. Nicht mitgeben: den Konversationsverlauf, die Argumente des Nutzers, warum der Plan funktioniert, und deine eigene Einschätzung. Ein Agent, der die Begeisterung für den Plan mitliest, findet schwächere Fehlergeschichten.
+- **Keine erfundenen Fakten**: Konkret wird die Fehlergeschichte durch die Zahlen und Namen aus dem Plan, nicht durch neu erfundene. Fehlende Angaben werden als Vermutung markiert, mit einem Halbsatz dazu, wie sie zu prüfen ist. Diese Markierung überlebt Synthese und Report.
 - **Wort-Limit ernst nehmen**: 350 Wörter zwingen zur Verdichtung. Längere Outputs verlieren an Schärfe.
